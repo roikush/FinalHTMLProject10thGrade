@@ -1,0 +1,84 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="DBAttempt.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        td{
+
+        }
+        .cs{
+            border:solid 0px white;
+        }
+        .invisible{
+            visibility:hidden;
+        }
+        body{
+            background-color:#278664;
+            overflow:hidden;
+        }
+        input{
+            background-color:#79a471;
+        }
+        .navButton{
+            animation:1.5 sec someName linear;
+            border-bottom:2px solid transparent;
+
+
+        }
+        .navButton:hover{
+            border-bottom: 2px solid rgb(34, 40, 148);
+        }
+        .links1{
+            text-decoration:none;
+            color:rgb(139, 189, 131);
+        }
+        .links{
+            text-decoration:none;
+            color:rgb(139, 189, 131);
+        }
+    </style>
+</head>
+<body onload="return getDetails(),sessionGetter(),accountDetailsSessionStarter();" >
+    <header>
+        <table>
+            <tr>
+                <td class="navButton"><a href="SignUp.aspx" class="links1">SignUp</a></td>
+                <td class="navButton"><a href="LogIn.aspx" class="links1">LogIn</a></td>
+                <td class="navButton"><a href="GamePage.aspx" class="links">GamePage</a></td>
+                <td class="navButton"><a href="AccountSettings.aspx" class="links">AccountDetails</a></td>
+                <td class="invisible"><input type="text" id="name" name="name"/></td>
+                <td class="invisible"><input type="text" id="pass" name="pass"/></td>
+                <td class="invisible"><input type="text" style="position: absolute;left:1000px;" id="getChangedBalance" value="0" name="getChangedBalance" /></td>
+                <td class="invisible"><input type="text" id="killMe" style="position: absolute;left:800px;top:250px;" name="killMe" /></td>
+                <td class="invisible"><input type="text" value="null" id="serverBal" name="serverBal" /></td>
+                <td class="invisible"><input type="text" id="forLoaded" name="forLoaded"/></td>
+                 
+            </tr>
+        </table>
+    </header>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+    <script>
+
+        function getDetails() {
+            document.getElementById("name").value = (sessionStorage.getItem("username")).replace("\"", "");
+            document.getElementById("pass").value = (sessionStorage.getItem("pass")).replace("\"", "");
+            document.getElementById("getChangedBalance").value = sessionStorage.getItem("balance");
+            document.getElementById("killMe").value = sessionStorage.getItem('balance');
+
+
+        }
+
+        document.getElementById("serverBal").value = sessionStorage.getItem("serverBalance").replace("\"", "");
+        document.getElementById("forLoaded").value = sessionStorage.getItem("loaded");
+
+    
+        
+    </script>
+</body>
+</html>
